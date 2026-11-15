@@ -1,0 +1,224 @@
+.topbar {
+  position: relative;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  height: 52px;
+  padding: 0 12px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.tb-left,
+.tb-right,
+.tb-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.tb-right {
+  justify-content: flex-end;
+}
+
+/* brand */
+.tb-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 8px 0 4px;
+  border-radius: var(--r-2);
+  color: var(--accent);
+  position: relative;
+}
+.tb-brand:hover {
+  background: var(--wash);
+}
+.tb-brand-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.tb-brand-back {
+  position: absolute;
+  left: 8px;
+  opacity: 0;
+  color: var(--accent-ink);
+  transition: opacity 150ms, transform 200ms var(--ease);
+  transform: translateX(4px);
+  pointer-events: none;
+}
+.tb-brand:hover .tb-brand-back {
+  opacity: 1;
+  transform: none;
+}
+.tb-brand:hover .tb-mark svg {
+  opacity: 0.95;
+}
+.tb-mark {
+  display: grid;
+  place-items: center;
+}
+.tb-slash {
+  color: var(--line-strong);
+  font-size: 18px;
+  font-weight: 300;
+}
+.tb-name,
+.tb-name-input {
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tb-name:hover {
+  background: var(--wash);
+}
+.tb-name-input {
+  background: var(--raised);
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  outline: none;
+  width: 200px;
+}
+.tb-saved {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 6px;
+  font-size: 12px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.tb-saved-tick {
+  color: var(--ok);
+  animation: tick-pop 500ms var(--ease);
+}
+@keyframes tick-pop {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.35); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* buttons */
+.tb-seg {
+  display: flex;
+  gap: 1px;
+  padding: 2px;
+  background: var(--wash);
+  border-radius: var(--r-2);
+}
+.tb-ic {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  color: var(--ink-2);
+  transition: background 130ms, color 130ms, transform 130ms var(--ease);
+}
+.tb-ic:hover:not(:disabled) {
+  background: var(--raised);
+  color: var(--ink);
+  box-shadow: var(--shadow-1);
+}
+.tb-ic:active:not(:disabled) {
+  transform: scale(0.92);
+}
+.tb-ic:disabled {
+  opacity: 0.35;
+}
+.tb-ic.on {
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent-line);
+}
+.tb-ic.danger:hover:not(:disabled) {
+  color: var(--danger);
+  background: var(--danger-soft);
+  box-shadow: none;
+}
+.tb-sep {
+  width: 1px;
+  height: 20px;
+  background: var(--line);
+  margin: 0 4px;
+}
+.tb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--r-2);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  background: var(--raised);
+  transition: background 140ms, border-color 140ms, transform 140ms var(--ease), box-shadow 140ms;
+}
+.tb-btn:hover {
+  border-color: var(--ink-3);
+}
+.tb-btn:active {
+  transform: translateY(1px);
+}
+.tb-btn.on {
+  background: var(--ink);
+  color: var(--ink-inverse);
+  border-color: var(--ink);
+}
+.tb-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 2px 8px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.tb-btn.primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+@media (max-width: 1180px) {
+  .tb-saved,
+  .tb-btn span {
+    display: none;
+  }
+  .tb-btn {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 860px) {
+  .topbar {
+    grid-template-columns: auto 1fr;
+    height: auto;
+    min-height: 52px;
+    padding: 6px 8px;
+    row-gap: 4px;
+  }
+  .tb-center {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: center;
+  }
+  .tb-slash,
+  .tb-name {
+    display: none;
+  }
+  .tb-brand-name {
+    font-size: 15px;
+  }
+}

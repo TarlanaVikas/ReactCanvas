@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+dist-ssr/
+build/
+.vite/
+*.local
+
+# Environment (keep the example)
+.env
+.env.*
+!.env.example
+
+# Python (tooling / scripts)
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Tests & coverage
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Editors & IDEs
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+
+# Operating system
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Caches & temp
+.eslintcache
+.cache/
+.parcel-cache/
+tmp/
+temp/
+*.tsbuildinfo

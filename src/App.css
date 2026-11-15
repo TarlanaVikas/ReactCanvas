@@ -1,0 +1,84 @@
+/* ═══════════════════════════════════════════════════════════
+   App shell — page modes and the "paint wipe" transition
+═══════════════════════════════════════════════════════════ */
+
+/* HOME: ordinary scrolling page */
+html.mode-home,
+html.mode-home body {
+  height: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+html.mode-home body #root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* STUDIO: locked viewport, panels scroll on their own */
+html.mode-studio,
+html.mode-studio body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+html.mode-studio body #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* The wipe: a pigment sheet that rises, covers the page while the
+   route swaps underneath, then lifts away. */
+.wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background: var(--ink);
+  border-top: 6px solid var(--pop);
+  transform: translateY(101%);
+}
+.wipe::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--grain);
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+.wipe.cover {
+  pointer-events: all;
+  animation: wipe-in 380ms var(--ease-in-out) forwards;
+}
+.wipe.reveal {
+  transform: translateY(0);
+  animation: wipe-out 460ms var(--ease-in-out) forwards;
+}
+@keyframes wipe-in {
+  from { transform: translateY(101%); }
+  to { transform: translateY(0); }
+}
+@keyframes wipe-out {
+  from { transform: translateY(0); }
+  to { transform: translateY(-101%); }
+}
+
+.boot {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--ink-2);
+  background: var(--wall);
+}
+
+/* keep the idle wipe sheet out of sight and out of the accessibility tree */
+.wipe:not(.cover):not(.reveal) {
+  visibility: hidden;
+}
