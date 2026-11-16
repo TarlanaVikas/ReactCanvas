@@ -16,7 +16,7 @@ preview every frame, and export real JSX and CSS.
 ![Zustand](https://img.shields.io/badge/State-Zustand-c48a12?style=flat-square)
 ![Browser](https://img.shields.io/badge/Backend-None%20%7C%20Browser--based-bddc84?style=flat-square&labelColor=2b0e15)
 
-[Repository](https://github.com/TarlanaVikas/ReactCanvas)
+[Live Demo](https://react-canvas-wine.vercel.app) · [Repository](https://github.com/TarlanaVikas/ReactCanvas)
 
 </div>
 
